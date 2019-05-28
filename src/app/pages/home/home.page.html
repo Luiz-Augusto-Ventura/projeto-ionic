@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>UpAqui - Página inicial</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="logoutUser()">
+        <ion-icon name="log-out" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+  
+<ion-content ion-padding> 
+  <ion-text>Bem-vindo {{ email }}</ion-text>
+</ion-content>

@@ -1,0 +1,20 @@
+<ion-header>
+
+</ion-header>
+
+<ion-content ion-padding>
+  <form [formGroup]="formLogin" (ngSubmit)="loginUser(formLogin.value)">
+    <ion-item>
+      <ion-label>E-mail: </ion-label>
+      <ion-input type="text" formControlName="email"></ion-input>  
+    </ion-item>
+    <ion-item>
+      <ion-label>Senha: </ion-label>
+      <ion-input type="password" formControlName="password"></ion-input>
+    </ion-item>
+
+    <ion-button type="submit">Entrar</ion-button>
+  </form>
+
+  <ion-button (onclick)="goToRegisterPage()">Cadastre-se</ion-button>
+</ion-content>
