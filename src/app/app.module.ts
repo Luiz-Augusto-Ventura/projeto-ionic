@@ -6,6 +6,19 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
+
+import { AngularFirestore, FirestoreSettingsToken, AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+
+import { ReactiveFormsModule } from '@angular/forms';
+
+import * as firebase from 'firebase';
+firebase.initializeApp(environment.firebase);
+
+import { AuthenticationService } from './services/authentication.service';
+
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
