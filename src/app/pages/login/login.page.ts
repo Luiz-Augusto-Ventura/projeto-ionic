@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Router } from '@angular/router';
+import { resolve, reject } from 'q';
+
 
 @Component({
   selector: 'app-login',
@@ -11,6 +13,7 @@ import { Router } from '@angular/router';
 export class LoginPage implements OnInit {
 
   formLogin: FormGroup;
+  log: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -27,7 +30,15 @@ export class LoginPage implements OnInit {
 
   loginUser(user) {
     this.authService.loginUser(user)
-      .then(() => this.router.navigateByUrl('/home'));
+      .then((resolve) => {
+        this.log = "";
+        this.router.navigateByUrl('/home');
+      })
+      .catch((msg) => {
+        this.log = "Usuário ou senha inválido(s)!";
+        console.log("Erro no login");
+        console.log(msg);
+      });
   }
 
   goToRegisterPage() {
