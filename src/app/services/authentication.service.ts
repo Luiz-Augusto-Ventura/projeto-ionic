@@ -11,6 +11,8 @@ export class AuthenticationService {
   constructor() { }
 
   registerUser(user) {
+    console.log("User: " + user.email);
+    console.log("Senha: " + user.password);
     return new Promise<any>(( resolve, reject) => {
       flogin.auth().createUserWithEmailAndPassword(user.email, user.password)
         .then(
@@ -44,6 +46,10 @@ export class AuthenticationService {
           })
       }
     });
+  }
+
+  getEmail() {
+    return flogin.auth().
   }
 
   detailsUser() {

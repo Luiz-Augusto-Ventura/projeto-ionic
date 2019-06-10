@@ -1,9 +1,35 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>register</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button routerLink="/login"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Criar conta UPaqui</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <form [formGroup]="formRegister" (ngSubmit)="register(formRegister.value)">
+    <ion-item>
+      <ion-label>Nome: </ion-label>
+      <ion-input type="text" formControlName="nome"></ion-input>
+    </ion-item>
 
+    <ion-item>
+      <ion-label>Sobrenome: </ion-label>
+      <ion-input type="text" formControlName="sobrenome"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>E-mail: </ion-label>
+      <ion-input type="text" formControlName="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Senha: </ion-label>
+      <ion-input type="password" formControlName="senha"></ion-input>
+    </ion-item>
+
+    <ion-button type="submit" [disabled]="!formRegister.valid">Registrar</ion-button>
+  </form>
 </ion-content>
