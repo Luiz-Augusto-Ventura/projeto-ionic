@@ -38,7 +38,7 @@ export class RegisterPage implements OnInit {
           //Se eu consegui fazer o login a partir do usuário registrado, eu cadastro o usuário na coleção users!
           //código que add o documento user para a coleção de usuários
           let newUser: User = { 
-            nome: user.nome, sobrenome: user.sobrenome
+            nome: user.nome, sobrenome: user.sobrenome, email: user.email
           };
 
           this.usersService.setUser(newUser, this.authService.detailsUser().uid);

@@ -19,6 +19,7 @@ export class MakeAPostPage implements OnInit {
   complaint: Complaint = {
     uid: '',
     nome: '',
+    email: '',
     titulo: '',
     descricao: '',
     localizacao: '',
@@ -48,6 +49,7 @@ export class MakeAPostPage implements OnInit {
 
   salvar() {
     this.complaint.uid = this.authService.detailsUser().uid;
+    this.complaint.email = this.authService.detailsUser().email;
     this.complaint.nome = this.user.nome + ' ' + this.user.sobrenome;
 
     this.complaintsService.addComplaint(this.complaint)

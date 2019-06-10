@@ -47,11 +47,7 @@ export class AuthenticationService {
       }
     });
   }
-
-  getEmail() {
-    return flogin.auth().
-  }
-
+  
   detailsUser() {
     return flogin.auth().currentUser;
   }
