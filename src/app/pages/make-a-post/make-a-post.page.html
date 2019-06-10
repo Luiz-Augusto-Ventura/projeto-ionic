@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button routerLink="/home"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Registrar caso</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="formPost">
+    <ion-item>
+      <ion-label>Título: </ion-label>
+      <ion-input type="text" formControlName="titulo" [(ngModel)]="complaint.titulo"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label>Descrição: </ion-label>
+        <ion-input type="text" formControlName="descricao" [(ngModel)]="complaint.descricao"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="complaint.imagem">
+      <img src="{{imagem}}" [(ngModel)]="complaint.imagem">
+    </ion-item>
+
+    <ion-item>
+      <ion-button (click)="openCamera()">
+        Abrir câmera
+      </ion-button>
+    </ion-item>
+    
+    <ion-item>
+        <ion-label>Localização: </ion-label>
+        <ion-input type="text" formControlName="localizacao" [(ngModel)]="complaint.localizacao"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label>Data: </ion-label>
+        <ion-input type="date" formControlName="data" [(ngModel)]="complaint.data"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-button (click)="salvar()" [disabled]="!formPost.valid">Salvar</ion-button>
+    </ion-item>
+  </form>
+</ion-content>
