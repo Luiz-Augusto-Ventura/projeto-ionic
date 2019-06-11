@@ -21,7 +21,7 @@
     </ion-item>
 
     <ion-item *ngIf="complaint.imagem">
-      <img src="{{imagem}}" [(ngModel)]="complaint.imagem">
+      <img src="{{complaint.imagem}}" [(ngModel)]="complaint.imagem">
     </ion-item>
 
     <ion-item>
@@ -40,8 +40,13 @@
         <ion-input type="date" formControlName="data" [(ngModel)]="complaint.data"></ion-input>
     </ion-item>
 
-    <ion-item>
+    <ion-item *ngIf="!complaint.id">
       <ion-button (click)="salvar()" [disabled]="!formPost.valid">Salvar</ion-button>
+    </ion-item>
+
+    <ion-item *ngIf="complaint.id">
+      <ion-button (click)="alterar()" [disabled]="!formPost.valid">Alterar</ion-button>
+      <ion-button (click)="excluir()" [disabled]="!formPost.valid">Excluir</ion-button>
     </ion-item>
   </form>
 </ion-content>

@@ -6,7 +6,7 @@ import { User } from 'src/app/models/user';
 import { UsersService } from 'src/app/services/users.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ComplaintsService } from 'src/app/services/complaints.service';
-import { TouchSequence } from 'selenium-webdriver';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-make-a-post',
@@ -16,6 +16,7 @@ import { TouchSequence } from 'selenium-webdriver';
 export class MakeAPostPage implements OnInit {
 
   formPost: FormGroup;
+  id: string;
   complaint: Complaint = {
     uid: '',
     nome: '',
@@ -33,7 +34,9 @@ export class MakeAPostPage implements OnInit {
     private formBuilder: FormBuilder,
     private usersService: UsersService,
     private authService: AuthenticationService,
-    private complaintsService: ComplaintsService) { 
+    private complaintsService: ComplaintsService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router) { 
       this.formPost = this.formBuilder.group({
         titulo: new FormControl('', Validators.required),
         descricao: new FormControl('', Validators.required),
@@ -41,7 +44,12 @@ export class MakeAPostPage implements OnInit {
         data: new FormControl('', Validators.required),
       })
 
+      this.id = this.activatedRoute.snapshot.paramMap.get('id');
       this.usersService.getUser(this.authService.detailsUser().uid).subscribe(data => this.user = data);
+
+      if(this.id) {
+        this.complaintsService.getComplaint(this.id).subscribe(data => this.complaint = data);
+      }
   }
 
   ngOnInit() {
@@ -53,11 +61,30 @@ export class MakeAPostPage implements OnInit {
     this.complaint.nome = this.user.nome + ' ' + this.user.sobrenome;
 
     this.complaintsService.addComplaint(this.complaint)
-      .then(),
+      .then(() => {this.router.navigateByUrl('/home')}),
       (error) => { 
           console.log("Erro ao registrar reclamação!");
           console.log(error);
         };
+  }
+
+  //Tratar excessões aqui
+  alterar() {
+    this.complaintsService.updateComplaint(this.complaint)
+      .then(() => {this.router.navigateByUrl('/home')}),
+      (error) => { 
+        console.log("Erro ao alterar reclamação!");
+        console.log(error);
+      };
+  }
+
+  excluir() {
+    this.complaintsService.deleteComplaint(this.complaint.id)
+      .then(() => {this.router.navigateByUrl('/home')}),
+      (error) => { 
+        console.log("Erro ao excluir reclamação!");
+        console.log(error);
+      };
   }
 
   openCamera() {
