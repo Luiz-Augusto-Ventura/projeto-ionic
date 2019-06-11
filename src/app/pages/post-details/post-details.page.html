@@ -1,9 +1,51 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>post-details</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button routerLink="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Ver reclamação</ion-title>
+    <ion-buttons slot="end" *ngIf="complaint.uid == uid">
+      <ion-button [routerLink]="['/make-a-post', complaint.id]">
+        <ion-icon name="create" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-item>
+    <ion-text>Título: </ion-text>
+    <ion-text>{{complaint.titulo}}</ion-text>
+  </ion-item>
 
+  <ion-item>
+      <ion-text>Imagem: </ion-text>
+      <br />
+      <img src={{complaint.imagem}}>
+  </ion-item>
+  
+  <ion-item>
+      <ion-text>Localização: </ion-text>
+      <ion-text>{{complaint.localizacao}}</ion-text>
+  </ion-item>
+
+  <ion-item>
+      <ion-text>Data: </ion-text>
+      {{complaint.data}}
+  </ion-item>
+
+  <ion-item>
+      <ion-text>Registrada por: </ion-text>
+      {{complaint.nome}}
+  </ion-item>
+
+  <ion-item>
+      <ion-text>Email do denunciante: </ion-text>
+      <ion-text>{{complaint.email}}</ion-text>
+  </ion-item>
+
+  <ion-item>
+      <ion-text>Descrição: </ion-text>
+      <ion-text>{{complaint.descricao}}</ion-text>
+  </ion-item>
 </ion-content>

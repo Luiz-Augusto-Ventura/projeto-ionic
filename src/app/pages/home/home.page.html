@@ -14,7 +14,7 @@
   <ion-text>Bem-vindo {{ email }}</ion-text>
 
   <ion-item *ngFor="let complaint of (complaints | async)">
-    <ion-card>
+    <ion-card [routerLink]="['/post-details', complaint.id]">
       <ion-card-header>
         <img src="{{complaint.imagem}}">
         <ion-card-subtitle>{{complaint.data}}</ion-card-subtitle>
