@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>UpAqui - Página inicial</ion-title>
+    <ion-title>UPaqui - Página inicial</ion-title>
 
     <ion-buttons slot="end">
       <ion-button (click)="logoutUser()">
@@ -13,19 +13,21 @@
 <ion-content ion-padding> 
   <ion-text>Bem-vindo {{ email }}</ion-text>
 
-  <ion-item *ngFor="let complaint of (complaints | async)">
-    <ion-card [routerLink]="['/post-details', complaint.id]">
-      <ion-card-header>
-        <img src="{{complaint.imagem}}">
-        <ion-card-subtitle>{{complaint.data}}</ion-card-subtitle>
-        <ion-card-title>{{complaint.titulo}}</ion-card-title>
-      </ion-card-header>
-    
-      <ion-card-content>
-        {{complaint.nome}}
-      </ion-card-content>
-    </ion-card>
-  </ion-item>
+  <ion-list lines="none">
+    <ion-item *ngFor="let complaint of (complaints | async)">
+      <ion-card [routerLink]="['/post-details', complaint.id]">
+        <ion-card-header>
+          <img src="{{complaint.imagem}}" height="100%" width="75%">
+          <ion-card-subtitle>{{complaint.data}}</ion-card-subtitle>
+          <ion-card-title>{{complaint.titulo}}</ion-card-title>
+        </ion-card-header>
+      
+        <ion-card-content>
+          {{complaint.nome}}
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+  </ion-list>
   
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button routerLink="/make-a-post">

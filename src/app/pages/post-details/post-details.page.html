@@ -13,39 +13,41 @@
 </ion-header>
 
 <ion-content>
-  <ion-item>
-    <ion-text>Título: </ion-text>
-    <ion-text>{{complaint.titulo}}</ion-text>
-  </ion-item>
+  <ion-list lines="none">
+    <ion-item>
+      <!--<ion-text color="primary"><b>Título: </b></ion-text>-->
+      <ion-text color="primary"><h2>{{complaint.titulo}}</h2></ion-text>
+    </ion-item>
 
-  <ion-item>
-      <ion-text>Imagem: </ion-text>
-      <br />
-      <img src={{complaint.imagem}}>
-  </ion-item>
-  
-  <ion-item>
-      <ion-text>Localização: </ion-text>
-      <ion-text>{{complaint.localizacao}}</ion-text>
-  </ion-item>
+    <ion-item>
+        <!--<ion-text color="primary"><b>Foto: </b></ion-text>
+        <br />-->
+        <img src={{complaint.imagem}}>
+    </ion-item>
+    
+    <ion-item>
+        <ion-text color="primary"><b>Localização: </b></ion-text>
+        <ion-text>{{complaint.localizacao}}</ion-text>
+    </ion-item>
 
-  <ion-item>
-      <ion-text>Data: </ion-text>
-      {{complaint.data}}
-  </ion-item>
+    <ion-item>
+        <ion-text color="primary"><b>Data: </b></ion-text>
+        {{complaint.data}}
+    </ion-item>
 
-  <ion-item>
-      <ion-text>Registrada por: </ion-text>
-      {{complaint.nome}}
-  </ion-item>
+    <ion-item>
+        <ion-text color="primary"><b>Registrada por: </b></ion-text>
+        {{complaint.nome}}
+    </ion-item>
 
-  <ion-item>
-      <ion-text>Email do denunciante: </ion-text>
-      <ion-text>{{complaint.email}}</ion-text>
-  </ion-item>
+    <ion-item>
+        <ion-text color="primary"><b>Email do denunciante: </b></ion-text>
+        <ion-text>{{complaint.email}}</ion-text>
+    </ion-item>
 
-  <ion-item>
-      <ion-text>Descrição: </ion-text>
-      <ion-text>{{complaint.descricao}}</ion-text>
-  </ion-item>
+    <ion-item>
+        <ion-text color="primary"><b>Descrição: </b></ion-text>
+        <ion-text>{{complaint.descricao}}</ion-text>
+    </ion-item>
+  </ion-list>
 </ion-content>

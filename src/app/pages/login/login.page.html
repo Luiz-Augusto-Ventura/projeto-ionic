@@ -3,22 +3,28 @@
 </ion-header>
 
 <ion-content ion-padding>
-  <form [formGroup]="formLogin" (ngSubmit)="loginUser(formLogin.value)">
-    <ion-item>
-      <ion-label>E-mail: </ion-label>
-      <ion-input type="text" formControlName="email"></ion-input>  
-    </ion-item>
-    <ion-item>
-      <ion-label>Senha: </ion-label>
-      <ion-input type="password" formControlName="password"></ion-input>
-    </ion-item>
+  <div class="vertically-aligned">
+    <form [formGroup]="formLogin" (ngSubmit)="loginUser(formLogin.value)">
+      <ion-item>
+        <ion-label position="stacked" color="medium">E-mail: </ion-label>
+        <ion-input type="text" formControlName="email"></ion-input>  
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked" color="medium">Senha: </ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
 
-    <ion-item *ngIf="log" clas="ion-text-justify">
-      <ion-text  color="danger">{{log}}</ion-text>
-    </ion-item>
+      <ion-item *ngIf="log" lines="none">
+        <ion-text color="danger" class="horizontally-aligned">{{log}}</ion-text>
+      </ion-item>
 
-    <ion-button type="submit" [disabled]="!formLogin.valid">Entrar</ion-button>
-  </form>
+      <ion-button type="submit" expand="full" [disabled]="!formLogin.valid">
+        Entrar
+        <ion-icon name="log-in"></ion-icon>
+      </ion-button>
+  
+    </form>
 
-  <ion-button (click)="goToRegisterPage()">Cadastre-se</ion-button>
+    <ion-button expand="full" fill="clear" (click)="goToRegisterPage()">Cadastre-se</ion-button>
+  </div>
 </ion-content>
