@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-back-button routerLink="/login"></ion-back-button>
     </ion-buttons>
@@ -11,25 +11,32 @@
 <ion-content>
   <form [formGroup]="formRegister" (ngSubmit)="register(formRegister.value)">
     <ion-item>
-      <ion-label>Nome: </ion-label>
+      <ion-label color="primary"><b>Nome:  </b></ion-label>
       <ion-input type="text" formControlName="nome"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label>Sobrenome: </ion-label>
+      <ion-label color="primary"><b>Sobrenome: </b></ion-label>
       <ion-input type="text" formControlName="sobrenome"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label>E-mail: </ion-label>
+      <ion-label color="primary"><b>E-mail: </b></ion-label>
       <ion-input type="text" formControlName="email"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label>Senha: </ion-label>
+      <ion-label color="primary"><b>Senha: </b></ion-label>
       <ion-input type="password" formControlName="senha"></ion-input>
     </ion-item>
 
-    <ion-button type="submit" [disabled]="!formRegister.valid">Registrar</ion-button>
+    <ion-button type="submit" expand="full" [disabled]="!formRegister.valid">
+      Registrar
+      <ion-icon name="person-add"></ion-icon>
+    </ion-button>
+
+    <ion-item *ngIf="log" lines="none">
+      <ion-text color="danger" class="horizontally-aligned">{{log}}</ion-text>
+    </ion-item>
   </form>
 </ion-content>

@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { UsersService } from 'src/app/services/users.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -13,12 +14,14 @@ import { UsersService } from 'src/app/services/users.service';
 export class RegisterPage implements OnInit {
 
   formRegister: FormGroup;
+  log: string = '';
 
   constructor(
     private authService: AuthenticationService,
     private usersService: UsersService,
     private router: Router,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder,
+    private toastController: ToastController) { }
 
   ngOnInit() {
     this.formRegister = this.formBuilder.group({
@@ -27,6 +30,13 @@ export class RegisterPage implements OnInit {
       email: new FormControl('', Validators.required),
       senha: new FormControl('', Validators.required)
     });
+  }
+
+  showToast(msg: string) {
+    this.toastController.create({
+      message: msg,
+      duration: 2000
+    }).then(toast => toast.present());
   }
   
   register(user) {
@@ -41,10 +51,18 @@ export class RegisterPage implements OnInit {
             nome: user.nome, sobrenome: user.sobrenome, email: user.email
           };
 
+          this.log = '';
           this.usersService.setUser(newUser, this.authService.detailsUser().uid);
           this.router.navigateByUrl('/home');
+          this.showToast('Usuário registrado com sucesso!');
         })
         
+      })
+      //Caso não seja possível registrar o usuário, uma menssagem de erro é emitida!
+      .catch((msg) => { 
+        this.log = 'E-mail inválido!';
+        console.log("Erro ao registrar");
+        console.log(msg); 
       });
   }
 

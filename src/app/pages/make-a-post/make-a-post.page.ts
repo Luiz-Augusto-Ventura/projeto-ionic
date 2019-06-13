@@ -7,6 +7,7 @@ import { UsersService } from 'src/app/services/users.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ComplaintsService } from 'src/app/services/complaints.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-make-a-post',
@@ -36,7 +37,8 @@ export class MakeAPostPage implements OnInit {
     private authService: AuthenticationService,
     private complaintsService: ComplaintsService,
     private activatedRoute: ActivatedRoute,
-    private router: Router) { 
+    private router: Router,
+    private toastController: ToastController) { 
       this.formPost = this.formBuilder.group({
         titulo: new FormControl('', Validators.required),
         descricao: new FormControl('', Validators.required),
@@ -55,14 +57,25 @@ export class MakeAPostPage implements OnInit {
   ngOnInit() {
   }
 
+  showToast(msg: string) {
+    this.toastController.create({
+      message: msg,
+      duration: 2000
+    }).then(toast => toast.present());
+  }  
+
   salvar() {
     this.complaint.uid = this.authService.detailsUser().uid;
     this.complaint.email = this.authService.detailsUser().email;
     this.complaint.nome = this.user.nome + ' ' + this.user.sobrenome;
 
     this.complaintsService.addComplaint(this.complaint)
-      .then(() => {this.router.navigateByUrl('/home')}),
+      .then(() => {
+        this.router.navigateByUrl('/home');
+        this.showToast('Reclamação registrada com sucesso!');
+      }),
       (error) => { 
+          this.showToast('Erro ao registrar reclamação!');
           console.log("Erro ao registrar reclamação!");
           console.log(error);
         };
@@ -71,8 +84,12 @@ export class MakeAPostPage implements OnInit {
   //Tratar excessões aqui
   alterar() {
     this.complaintsService.updateComplaint(this.complaint)
-      .then(() => {this.router.navigateByUrl('/home')}),
+      .then(() => {
+        this.router.navigateByUrl('/home');
+        this.showToast('Reclamação alterada com sucesso!');
+      }),
       (error) => { 
+        this.showToast('Erro ao alterar reclamação!');
         console.log("Erro ao alterar reclamação!");
         console.log(error);
       };
@@ -80,8 +97,12 @@ export class MakeAPostPage implements OnInit {
 
   excluir() {
     this.complaintsService.deleteComplaint(this.complaint.id)
-      .then(() => {this.router.navigateByUrl('/home')}),
+      .then(() => {
+        this.router.navigateByUrl('/home');
+        this.showToast('Reclamação excluída com sucesso!');
+      }),
       (error) => { 
+        this.showToast('Erro ao excluir reclamação!');
         console.log("Erro ao excluir reclamação!");
         console.log(error);
       };
@@ -102,6 +123,7 @@ export class MakeAPostPage implements OnInit {
       //Alterar isso aqui depois
       this.complaint.imagem = this.imagem;
     }, (err) => {
+      this.showToast('Erro ao tirar foto!');
       console.log("Erro ao tirar foto!");
       console.log(err);
     });
