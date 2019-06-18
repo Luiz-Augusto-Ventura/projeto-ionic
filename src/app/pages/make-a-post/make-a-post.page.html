@@ -30,6 +30,9 @@
       <ion-item *ngIf="complaint.imagem">
         <img src="{{complaint.imagem}}" [(ngModel)]="complaint.imagem">
       </ion-item>
+      <ion-item *ngIf="!complaint.imagem">
+        <img src="../../../assets//images/default-thumbnail.jpg">
+      </ion-item>
 
       <ion-item>
         <ion-button (click)="openCamera()" class="horizontally-aligned">
@@ -46,6 +49,25 @@
       <ion-item>
           <ion-label color="primary"><b>Data: </b></ion-label>
           <ion-input type="date" formControlName="data" [(ngModel)]="complaint.data"></ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="complaint.id">
+          <ion-item>
+            <ion-label color="primary"><b>Status: </b></ion-label>
+          </ion-item>
+          <ion-radio-group class="horizontally-aligned">
+                  
+              <ion-item>
+                  <ion-label>Problema resolvido</ion-label>
+                  <ion-radio slot="start" [checked]="complaint.resolvido" #inputres (click)="setResolvido()"></ion-radio>
+                </ion-item>
+
+              <ion-item>
+                  <ion-label>Problema não resolvido</ion-label>
+                  <ion-radio slot="start" [checked]="!complaint.resolvido" #inputnaores (click)="setNaoResolvido()"></ion-radio>
+              </ion-item>
+
+          </ion-radio-group>
       </ion-item>
 
       
@@ -65,7 +87,7 @@
             <ion-icon name="create"></ion-icon>
           </ion-button>
         
-          <ion-button expand="full" size="default" color="danger" (click)="excluir()" [disabled]="!formPost.valid">
+          <ion-button expand="full" size="default" color="danger" (click)="showAlertExcluir()" [disabled]="!formPost.valid">
             Excluir
             <ion-icon name="trash"></ion-icon>
           </ion-button>

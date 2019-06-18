@@ -52,6 +52,7 @@ export class ComplaintsService {
       .update({
         titulo: complaint.titulo,
         descricao: complaint.descricao,
+        resolvido: complaint.resolvido,
         imagem: complaint.imagem,
         localizacao: complaint.localizacao
       });
