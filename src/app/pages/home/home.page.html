@@ -11,19 +11,30 @@
 </ion-header>
   
 <ion-content ion-padding> 
-  <ion-text class="horizontally-aligned">Bem-vindo {{ email }}</ion-text>
-
+  <ion-item lines="none">
+    <ion-text class="horizontally-aligned">Bem-vindo {{ email }}</ion-text>
+  </ion-item>
+  
   <ion-list lines="none">
     <ion-item *ngFor="let complaint of (complaints | async)">
       <ion-card [routerLink]="['/post-details', complaint.id]">
         <ion-card-header>
-          <img src="{{complaint.imagem}}" height="100%" width="75%">
+          <img *ngIf="!complaint.imagem" src="../../../assets/images/default-thumbnail-large.jpg" height="100%" width="75%">
+          <img *ngIf="complaint.imagem" src="{{complaint.imagem}}" height="100%" width="75%">
           <ion-card-subtitle>{{complaint.data}}</ion-card-subtitle>
           <ion-card-title>{{complaint.titulo}}</ion-card-title>
         </ion-card-header>
       
         <ion-card-content>
           {{complaint.nome}}
+          
+          <ion-item *ngIf="!complaint.resolvido" no-padding>
+            <ion-text color="danger">Não resolvido</ion-text>
+          </ion-item>
+
+          <ion-item *ngIf="complaint.resolvido" no-padding>
+            <ion-text color="primary">Resolvido</ion-text>
+          </ion-item>
         </ion-card-content>
       </ion-card>
     </ion-item>

@@ -7,7 +7,7 @@ import { UsersService } from 'src/app/services/users.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { ComplaintsService } from 'src/app/services/complaints.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { ToastController, AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-make-a-post',
@@ -24,6 +24,7 @@ export class MakeAPostPage implements OnInit {
     email: '',
     titulo: '',
     descricao: '',
+    resolvido: false,
     localizacao: '',
     imagem: '',
     data: ''
@@ -38,7 +39,8 @@ export class MakeAPostPage implements OnInit {
     private complaintsService: ComplaintsService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private toastController: ToastController) { 
+    private toastController: ToastController,
+    private alertController: AlertController) { 
       this.formPost = this.formBuilder.group({
         titulo: new FormControl('', Validators.required),
         descricao: new FormControl('', Validators.required),
@@ -81,7 +83,7 @@ export class MakeAPostPage implements OnInit {
         };
   }
 
-  //Tratar excessões aqui
+ 
   alterar() {
     this.complaintsService.updateComplaint(this.complaint)
       .then(() => {
@@ -127,5 +129,49 @@ export class MakeAPostPage implements OnInit {
       console.log("Erro ao tirar foto!");
       console.log(err);
     });
+  }
+
+  async showAlertExcluir() {
+    const alert = await this.alertController.create({
+      header: 'Excluir reclamação',
+      message: 'Deseja realmente excluir esta reclamação?',
+      buttons: [
+        {
+          text: 'Não',
+          role: 'cancel',
+          cssClass: 'primary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Sim',
+          cssClass: 'danger',
+          handler: () => {
+            this.excluir();
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  //Função não funciona
+  setStatus(radio) {
+    //this.complaint.resolvido = radio;
+    console.log(radio);
+    console.log(this.complaint);
+  }
+
+  setResolvido() {
+    console.log('Input resolvido: ');
+    this.complaint.resolvido = true;
+    console.log(this.complaint.resolvido);
+  }
+
+  setNaoResolvido() {
+    console.log('Input não resolvido: ');
+    this.complaint.resolvido = false; 
+    console.log(this.complaint.resolvido);
   }
 }

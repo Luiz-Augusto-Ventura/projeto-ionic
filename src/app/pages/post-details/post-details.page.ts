@@ -19,6 +19,7 @@ export class PostDetailsPage implements OnInit {
     email: '',
     titulo: '',
     descricao: '',
+    resolvido: false,
     localizacao: '',
     imagem: '',
     data: ''

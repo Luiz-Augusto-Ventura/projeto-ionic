@@ -5,6 +5,7 @@ export class Complaint {
     email: string;
     titulo: string;
     descricao: string;
+    resolvido: boolean;
     localizacao: string;
     imagem: string;
     data: string;

@@ -15,14 +15,14 @@
 <ion-content>
   <ion-list lines="none">
     <ion-item>
-      <!--<ion-text color="primary"><b>Título: </b></ion-text>-->
       <ion-text color="primary"><h2>{{complaint.titulo}}</h2></ion-text>
     </ion-item>
 
-    <ion-item>
-        <!--<ion-text color="primary"><b>Foto: </b></ion-text>
-        <br />-->
-        <img src={{complaint.imagem}}>
+    <ion-item *ngIf="!complaint.imagem">
+      <img src="../../../assets/images/default-thumbnail-large.jpg">
+    </ion-item>
+    <ion-item *ngIf="complaint.imagem">
+      <img src="{{complaint.imagem}}">
     </ion-item>
     
     <ion-item>
@@ -48,6 +48,12 @@
     <ion-item>
         <ion-text color="primary"><b>Descrição: </b></ion-text>
         <ion-text>{{complaint.descricao}}</ion-text>
+    </ion-item>
+
+    <ion-item>
+        <ion-text color="primary"><b>Status: </b></ion-text>
+        <ion-text *ngIf="complaint.resolvido">Problema resolvido</ion-text>
+        <ion-text *ngIf="!complaint.resolvido">Problema não resolvido</ion-text>
     </ion-item>
   </ion-list>
 </ion-content>
