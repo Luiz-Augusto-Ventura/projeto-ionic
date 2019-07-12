@@ -6,9 +6,21 @@
   
   Como recurso nativo foi utilizada a câmera.
   
-Colaborador: Willian Mariano
+### Executando aplicação:
 
-Capturas de tela: 
+**npm install**:
+Instala os módulos e dependências necessários à aplicação.
+
+**ionic cordova prepare android**:
+Compila a aplicação para o sistema Android, gerando todos os arquivos e recursos necessários.
+
+**ionic cordova run android --device**:
+Por fim, instala e executa a aplicação no dispositivo físico. 
+
+
+##### Colaborador: Willian Mariano
+
+#### Capturas de tela: 
 
 ![Captura](screenshots/captura_login.png)
 
