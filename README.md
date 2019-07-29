@@ -31,3 +31,38 @@ Por fim, instala e executa a aplicação no dispositivo físico.
 ![Captura](screenshots/captura_detalhes.png)
 
 ![Captura](screenshots/captura_alterar.png)
+
+#### Pacotes Utilizados:
+
+**Angular:**
+
+Angular CLI: 7.3.5
+
+Node: 10.15.1
+
+OS: win32 x64
+
+Angular:
+...
+
+**Package --------------------- Version**
+
+@angular-devkit/architect --- 0.13.5
+
+@angular-devkit/core -------- 7.3.5
+
+@angular-devkit/schematics - 7.3.5
+
+@schematics/angular --------- 7.3.5
+
+@schematics/update --------- 0.13.5
+
+rxjs ----------------------------- 6.3.3
+
+typescript ---------------------- 3.2.4
+
+----------------------------------------------
+
+**Ionic:**
+
+Ionic 4.12.0
