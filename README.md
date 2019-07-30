@@ -18,7 +18,7 @@ Compila a aplicação para o sistema Android, gerando todos os arquivos e recurs
 Por fim, instala e executa a aplicação no dispositivo físico. 
 
 
-##### Colaborador: Willian Mariano
+##### Outros desenvolvedores: Willian Mariano
 
 #### Capturas de tela: 
 
