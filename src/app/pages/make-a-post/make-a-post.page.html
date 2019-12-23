@@ -30,8 +30,9 @@
       <ion-item *ngIf="complaint.imagem">
         <img src="{{complaint.imagem}}" [(ngModel)]="complaint.imagem">
       </ion-item>
+      <!-- Trocar pela Large Thumbnail -->
       <ion-item *ngIf="!complaint.imagem">
-        <img src="../../../assets//images/default-thumbnail.jpg">
+        <img src="../../../assets/images/default-thumbnail-large.jpg">
       </ion-item>
 
       <ion-item>
