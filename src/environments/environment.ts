@@ -1,3 +1,5 @@
+import { Connection } from '../../connection';
+
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
@@ -5,13 +7,13 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyDW7eg0pJJtiiZVGzqEnYerpy4OnAsrnI0",
-    authDomain: "projeto-ionic-528d4.firebaseapp.com",
-    databaseURL: "https://projeto-ionic-528d4.firebaseio.com",
-    projectId: "projeto-ionic-528d4",
-    storageBucket: "projeto-ionic-528d4.appspot.com",
-    messagingSenderId: "166818387152",
-    appId: "1:166818387152:web:10e11a93c4f563e1"
+    apiKey: Connection.apiKey,
+    authDomain: Connection.authDomain,
+    databaseURL: Connection.databaseURL,
+    projectId: Connection.projectId,
+    storageBucket: Connection.storageBucket,
+    messagingSenderId: Connection.messagingSenderId,
+    appId: Connection.apiKey
   }
 };
 
